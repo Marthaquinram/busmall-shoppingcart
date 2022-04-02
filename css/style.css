@@ -1,1 +1,33 @@
 /* TODO: Make it awesome */
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: rgb(195, 221, 246);
+}
+header {
+    text-align: center;
+    font-size: 35px;
+    background-color: aquamarine;
+
+}
+
+nav {
+    background-color: bisque;
+    justify-content: flex-end;
+}
+
+#itemCount {
+    background-color: cyan;
+}
+
+.card {
+    background-color: pink;
+}
+
+footer {
+    text-align: center;
+    margin-top: 10px;
+    background-color: blanchedalmond;
+    color: gray;
+}

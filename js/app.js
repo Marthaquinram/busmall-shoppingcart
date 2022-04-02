@@ -29,7 +29,8 @@ Cart.prototype.removeItem = function(item) {
 
 const CartItem = function(product, quantity) {
   this.product = product;
-  this.quantity = quantity;
+  // converted the quantity into a interger to be able to add in catalog.
+  this.quantity = parseInt(quantity);
 };
 
 
