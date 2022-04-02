@@ -4,7 +4,11 @@
 
 // Set up an empty cart for use on this page.
 const cart = new Cart([]);
-
+// added itemCart, textCart as global variables. 
+let itemCart = document.getElementById('itemCount');
+let textCart = document.createElement('textCart');
+// appended global variables to the DOM.
+itemCart.appendChild(textCart);
 // On screen load, we call this method to put all of the busmall options
 // (the things in the Product.allProducts array) into the drop down list.
 function populateForm() {
@@ -46,14 +50,17 @@ let seletedQuantity = document.getElementById('quantity').value;
   // DONE: using those, add one item to the Cart
 }
 
-// TODO: Update the cart count in the header nav with the number of items in the Cart
+// DONE: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
-let itemCart = document.getElementById('itemCount');
-let textCart = document.createElement('textCart');
+ // created total items variable and set to zero to begin addition process
+  let totalItems = 0;
+   // added for loop to sum the total quantity of the items in the cart array.
+  for (let i = 0; i < cart.items.length; i++){
+    // this is adding the total quantity from the cart constructor together to create a total for that item.
+    totalItems += cart.items[i].quantity;
+  }
 
-textCart.textContent = (`Items in cart: ${cart.items.length}`);
-
-itemCart.appendChild(textCart);
+textCart.textContent = (` Items in cart: ${totalItems}.`);
 }
 
 // DONE: As you add items into the cart, show them (item & quantity) in the cart preview div
@@ -69,8 +76,8 @@ function updateCartPreview() {
       // appending the contents to the web browser to include quantity and item
   cartContents.appendChild(cartPreview);
 
-  // TODO: Get the item and quantity from the form
-  // TODO: Add a new element to the cartContents div with that information
+  // DONE: Get the item and quantity from the form
+  // DONE: Add a new element to the cartContents div with that information
 }
 
 // Set up the "submit" event listener on the form.
@@ -82,8 +89,3 @@ catalogForm.addEventListener('submit', handleSubmit);
 // Before anything else of value can happen, we need to fill in the select
 // drop down list in the form.
 populateForm();
-
-
-//<input id="quantity" type="number" />
-//<select id="items"></select>
-//<form id="catalog">
