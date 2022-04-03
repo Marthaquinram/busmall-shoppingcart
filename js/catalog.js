@@ -60,7 +60,7 @@ function updateCounter() {
     totalItems += cart.items[i].quantity;
   }
 
-textCart.textContent = (` Items in cart: ${totalItems}.`);
+textCart.textContent = (`Items in cart: ${totalItems}`);
 }
 
 // DONE: As you add items into the cart, show them (item & quantity) in the cart preview div
