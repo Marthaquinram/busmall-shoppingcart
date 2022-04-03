@@ -1,6 +1,6 @@
 'use strict';
 
- let cartsArray = [];
+const cartsArray = [];
 // Cart constructor.
 const Cart = function(items) {
   // this.items is an array of CartItem instances.
@@ -19,8 +19,14 @@ Cart.prototype.saveToLocalStorage = function() {
 };
 
 Cart.prototype.removeItem = function(item) {
-  this.items.splice(item, 1);
-  };
+  for (let i = 0; i < this.items.length; i++) {
+    if (this.items[i].product === item) {
+      this.items.splice(i, 1);
+      break;
+    }
+    this.saveToLocalStorage();
+  }
+};
 
 
 // DONE: Fill in this instance method to remove one item from the cart.
