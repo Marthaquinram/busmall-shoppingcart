@@ -4,7 +4,7 @@
 
 // Set up an empty cart for use on this page.
 const cart = new Cart([]);
-// added itemCart, textCart as global variables. 
+// added itemCart, textCart as global variables.
 let itemCart = document.getElementById('itemCount');
 let textCart = document.createElement('textCart');
 // appended global variables to the DOM.
@@ -60,7 +60,7 @@ function updateCounter() {
     totalItems += cart.items[i].quantity;
   }
 
-textCart.textContent = (`Items in cart: ${totalItems}`);
+  textCart.textContent = (`Items in cart: ${totalItems}`);
 }
 
 // DONE: As you add items into the cart, show them (item & quantity) in the cart preview div
@@ -70,7 +70,7 @@ function updateCartPreview() {
   let quantity = document.getElementById('quantity').value;
   let cartContents = document.getElementById('cartContents');
       // creating the Cart Preview element
-  let cartPreview = document.createElement('cartPreview');
+  let cartPreview = document.createElement('p');
       // adding the text for the consumer for their product choice and quantity
   cartPreview.textContent = ` Items chosen: ${item}, qty: ${quantity}.`;
       // appending the contents to the web browser to include quantity and item
