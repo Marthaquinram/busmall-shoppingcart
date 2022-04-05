@@ -48,15 +48,15 @@ function showCart() {
     deleteTd.addEventListener('click', removeItemFromCart);
     deleteTd.textContent = 'x';
     deleteTd.id = `${cart.items[i].product}`; //naming the classlist remover // deleter 
-    tRow.appendChild(deleteTd);
-
+    
     let quantityTd = document.createElement('td');
     quantityTd.textContent = cart.items[i].quantity;
-    tRow.appendChild(quantityTd);
-
+    
     let itemTd = document.createElement('td');
     itemTd.textContent = cart.items[i].product; //product name
     tRow.appendChild(itemTd);
+    tRow.appendChild(quantityTd);
+    tRow.appendChild(deleteTd);
   }
 
 
