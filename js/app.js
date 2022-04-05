@@ -13,16 +13,20 @@ Cart.prototype.addItem = function(product, quantity) {
 };
 
 Cart.prototype.saveToLocalStorage = function() {
-  const saveAll = JSON.stringify(this.items);
+  const saveAll = JSON.stringify(cart.items);
   localStorage.setItem('cart', saveAll);
   // DONE: Fill in this instance method to save the contents of the cart to localStorage
 };
-
+Cart.prototype.loadFromLocalStorage = function() {
+let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+cart = new Cart(cartItems);
+};
 Cart.prototype.removeItem = function(item) {
-  for (let i = 0; i < this.items.length; i++) {
-    if (this.items[i].product === item) {
-      this.items.splice(i, 1);
-      break;
+ this.loadFromLocalStorage();
+  for (let i = 0; i < cart.items.length; i++) {
+    if (cart.items[i].product === item) {
+      cart.items.splice(i, 1);
+    //  break;
     }
     this.saveToLocalStorage();
   }
