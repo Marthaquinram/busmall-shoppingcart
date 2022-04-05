@@ -2,7 +2,8 @@
 'use strict';
 // Create an event listener so that when the delete link is clicked, the removeItemFromCart method is invoked.
 const table = document.getElementById('cart');
-table.addEventListener('click', removeItemFromCart);
+let cartBody = document.querySelector('tbody');// create tbody inside the table
+
 let cart; // declaring a variable 
 //let cartList = [];
 
@@ -20,19 +21,22 @@ function renderCart() {
 
 // DONE: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {
-  let cartTableRows = document.querySelectorAll('#cart tbody tr'); //grabing all the table row
-  for (let i = 0; i < cartTableRows.length; i++) {// looping  through items in the cart
-    if (cartTableRows[i]) { // if item exists at index 
-      cartTableRows[i].remove();// remove that item at that [i] in the cart
-    }
+  while(cartBody.firstChild) { //body of table, do you have a child?
+    cartBody.removeChild(cartBody.firstChild);// while you have this child, remove the child.
   }
+  // let cartTableRows = document.querySelectorAll('#cart tbody tr'); //grabing all the table row
+  // for (let i = 0; i < cartTableRows.length; i++) {// looping  through items in the cart
+  //   if (cartTableRows[i]) { // if item exists at index 
+  //     cartTableRows[i].remove();// remove that item at that [i] in the cart
+  //   }
+  // }
 }
 
 // DONE: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
 
   // DONE: Find the table body
-  let cartBody = document.querySelector('tbody');// create tbody inside the table
+  
   // DONE: Iterate over the items in the cart
   for (let i in cart.items) {// doing the for loop in short hand
     // DONE: Create a TR
@@ -41,8 +45,9 @@ function showCart() {
 
     // DONE: Create a TD for the delete link, quantity,  and the item
     let deleteTd = document.createElement('td');
+    deleteTd.addEventListener('click', removeItemFromCart);
     deleteTd.textContent = 'x';
-    deleteTd.classList.add('remover'); //naming the classlist remover // deleter 
+    deleteTd.id = `${cart.items[i].product}`; //naming the classlist remover // deleter 
     tRow.appendChild(deleteTd);
 
     let quantityTd = document.createElement('td');
@@ -55,25 +60,24 @@ function showCart() {
   }
 
 
-  console.log(showCart);
+  // console.log(showCart);
   // DONE: Add the TR to the TBODY and each of the TD's to the TR
 
 
 }
-showCart();
 
 function removeItemFromCart(event) {
-
-  // DONE: When a delete link is clicked, use cart.removeItem to remove the correct item
-  if (event.target.classList.contains('remover')){ 
-  let parsedId =  parseInt(event.target.id); //parsing only the targeted id which is the 'remover'.
- cart.removeItem(parsedId); //removing the parsedId
+console.log(event.target);
+  
+let deleteTarget = event.target.id;// DONE: When a delete link is clicked, use cart.removeItem to remove the correct item
+  //if (event.target.classList.contains('remover'))
+  //let parsedId =  parseInt(event.target.id); //parsing only the targeted id which is the 'remover'.
+  console.log(deleteTarget);
+ cart.removeItem(deleteTarget); //removing the parsedId
   // DONE: Save the cart back to local storage
-  cart.saveToLocalStorage();// saving to the local storage
-
+  // cart.saveToLocalStorage();// saving to the local storage
   // DONE: Re-draw the cart table
  renderCart();// calling the cart
-  }
 }
 
 // This will initialize the page and draw the cart on screen
